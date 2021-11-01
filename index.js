@@ -14,6 +14,8 @@ app.use(cors())
 
 //routes
 app.use('/api/auth',require('./routes/users') )
+app.use('/api/bugs',require('./routes/bugs'))
+app.use('/api/projects',require('./routes/projects'))
 
 
 

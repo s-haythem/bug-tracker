@@ -25,4 +25,5 @@ const isAuth = async (req, res, next) => {
     res.status(400).json({ msg: "user is not authorized" });
   }
 };
-module.exports = isAuth;
+
+module.exports = isAuth

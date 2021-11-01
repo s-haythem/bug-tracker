@@ -1,5 +1,4 @@
 const express = require("express");
-const { findOne } = require("../Models/Users");
 const router = express.Router();
 let User = require("../Models/Users");
 const bcrypt = require("bcryptjs");
@@ -7,15 +6,12 @@ const jwt = require("jsonwebtoken");
 const isAuth = require("../middlewares/isAuth");
 const { loginValidation, validation } = require("../middlewares/validation");
 
-router.get("/test", (req, res) => {
-  res.send("it works");
-});
 
 //@route http://localhost:5000/api/auth/register
 //@role register
 //@public
 router.post("/register", async (req, res) => {
-  const { name, lastName, email, password } = req.body;
+  const { name, lastName, email, password, phone, address, isAdmin, role } = req.body;
   try {
     //check for exiting user
     let user = await User.findOne({ email });
@@ -27,7 +23,7 @@ router.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     //create a new user
-    user = new User({ name, lastName, email, password: hashedPassword });
+    user = new User({ name, lastName, email, password: hashedPassword, phone, address, isAdmin, role });
 
     //save the user
     await user.save();
@@ -63,7 +59,7 @@ router.post("/login", loginValidation, validation, async (req, res) => {
       expiresIn: "7 days",
     });
 
-    res.status(202).json({ msg: "lodin succed ", user, token });
+    res.status(202).json({ msg: "success ", user, token });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

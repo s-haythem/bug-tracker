@@ -1,6 +1,6 @@
 //require mongoose
 const mongoose=require('mongoose');
-const router = require('../routes/users');
+
  //require Schema from mongoose 
  const Schema= mongoose.Schema;
  //create the user schema
@@ -14,6 +14,13 @@ const router = require('../routes/users');
          type:String,
          required:true
      },
+     phone: {
+         type : String,
+         required : true
+     },
+     address : {
+         type : String
+     },
      email:{
          type:String,
          required:true,
@@ -22,10 +29,15 @@ const router = require('../routes/users');
      password:{
          type:String,
          required:true
+     },
+     isAdmin : {
+         type : Boolean,
+         default : false
+     },
+     role : {
+         type : String,
+         enum : ["developer","client"]
      }
  })
 
  module.exports=User=mongoose.model('User',userSchema)
-//create the shema 
-//creat ethe model 
-//export the model 
