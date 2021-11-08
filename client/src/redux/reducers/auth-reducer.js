@@ -1,4 +1,4 @@
-import { ERROR_USER, GET_USER, LOGIN_USER, LOGOUT_USER, REGISTER_USER } from "../action-types/auth-action-types"
+import { DELETE_USER, ERROR_USER, GET_ALL_USERS, GET_USER, LOGIN_USER, LOGOUT_USER, REGISTER_USER, UPDATE_USER } from "../action-types/auth-action-types"
 
 const initialState={
     token:localStorage.getItem('token'),
@@ -29,9 +29,25 @@ case GET_USER:return{
     user:action.payload
    
 }
+case GET_ALL_USERS:return{
+    ...state,
+    isAuth:true,
+    user:action.payload
+   
+}
+case DELETE_USER:return{
+    ...state,
+    isAuth:true,
+    user:action.payload
+   
+}
+case UPDATE_USER:return{
+    ...state,
+    isAuth:true,
+    user:action.payload
+   
+}
 
-
-    default:return state
-       
+    default:return state      
 }
 }

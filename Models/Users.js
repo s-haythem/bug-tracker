@@ -1,6 +1,6 @@
 //require mongoose
 const mongoose=require('mongoose');
-
+const bcrypt = require("bcryptjs")
  //require Schema from mongoose 
  const Schema= mongoose.Schema;
  //create the user schema
@@ -16,7 +16,6 @@ const mongoose=require('mongoose');
      },
      phone: {
          type : String,
-         required : true
      },
      address : {
          type : String
@@ -36,8 +35,30 @@ const mongoose=require('mongoose');
      },
      role : {
          type : String,
-         enum : ["developer","client"]
+         enum : ["admin","developer","client"]
      }
  })
+
+ 
+
+//  userSchema.pre('save', function(next) {
+//     var user = this;
+
+//     // only hash the password if it has been modified (or is new)
+//     if (!user.isModified('password')) return next();
+
+//     // generate a salt
+//     bcrypt.genSalt(10, function(err, salt) {
+//         if (err) return next(err);
+
+//         // hash the password using our new salt
+//         bcrypt.hash(user.password, salt, function(err, hash) {
+//             if (err) return next(err);
+//             // override the cleartext password with the hashed one
+//             user.password = hash;
+//             next();
+//         });
+//     });
+// });
 
  module.exports=User=mongoose.model('User',userSchema)

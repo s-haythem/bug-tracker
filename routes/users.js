@@ -3,7 +3,7 @@ const router = express.Router();
 let User = require("../Models/Users");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const isAuth = require("../middlewares/isAuth");
+const {isAuth, authAdmin, authDev, authClient} = require("../middlewares/isAuth");
 const { loginValidation, validation } = require("../middlewares/validation");
 
 
@@ -59,23 +59,51 @@ router.post("/login", loginValidation, validation, async (req, res) => {
       expiresIn: "7 days",
     });
 
-    res.status(202).json({ msg: "success ", user, token });
+    res.status(202).json({ msg: "success ", token });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+});
+
+//@url: http://localhost:5000/api/auth/delete/:id
+//@role:delete user
+//private
+router.delete("/delete/:id",isAuth, authAdmin, async (req, res) => {
+  const id = req.params.id;
+  try {
+    let user = await User.findByIdAndRemove(id);
+    res.status(200).json({msg :"user deleted"});
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+});
+
+//@url: http://localhost:5000/api/auth/edit/:id
+//@role: update contact
+//private
+router.put("/edit/:id", isAuth, async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    let user = await User.findByIdAndUpdate(id, { $set: req.body })
+    res.status(200).json({msg : "user updated"})
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
 });
 
 //@route http://localhost:5000/api/auth/user
-//@role: get a uset
-//@private
+//@role: get a user
+//@access : private
 router.get("/user", isAuth, (req, res) => {
-  const user = req.user;
-
-  res.status(200).json(req.user);
+ 
+  const {user} = req;
+  res.status(200).json(user);
 });
 //@route http://localhost:5000/api/auth/all
-//@role: get a uset
-router.get("/all", async (req, res) => {
+//@role: get all users
+//@access : private
+router.get("/all", isAuth,authAdmin, async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
@@ -84,4 +112,4 @@ router.get("/all", async (req, res) => {
   }
 });
 
-module.exports = router;
+  module.exports = router;

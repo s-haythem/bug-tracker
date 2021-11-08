@@ -1,10 +1,13 @@
 import axios from "axios";
 import {
+  DELETE_USER,
   ERROR_USER,
+  GET_ALL_USERS,
   GET_USER,
   LOGIN_USER,
   LOGOUT_USER,
   REGISTER_USER,
+  UPDATE_USER,
 } from "../action-types/auth-action-types";
 
 export const registerHandler = (newUser) => async (dispatch) => {
@@ -74,3 +77,41 @@ export const getAuthUser = () => async (dispatch) => {
     console.log(error);
   }
 };
+export const getAuthAllUser = () => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "auth-token": localStorage.getItem("token"),
+      },
+    };
+    const res = await axios.get("http://localhost:5000/api/auth/all", config);
+    dispatch({
+      type: GET_ALL_USERS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const deleteUser = (user_id) => async (dispatch) => {
+  try {
+    const res = await axios.delete("http://localhost:5000/api/auth/delete/:id", user_id)
+    dispatch({
+      type : DELETE_USER,
+      payload : res.data
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const updateUser = (user_id) => async (dispatch) => {
+  try {
+    const res = await axios.put("http://localhost:5000/api/auth/edit/:id", user_id)
+    dispatch({
+      type : UPDATE_USER,
+      payload : res.data
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}

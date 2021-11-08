@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middlewares/isAuth');
+const {isAuth, authAdmin, authDev, authClient} = require("../middlewares/isAuth");
 const { check, validationResult } = require('express-validator');
 
 
@@ -9,29 +9,28 @@ const Bug = require('../Models/Bug');
 // @route   GET api/bugs
 // @desc    Get all users bugs
 // @access  Private
-router.get('/', auth, async (req, res) => {
+router.get('/',isAuth,authAdmin || authDev,  async (req, res) => {
   try {
-    const bugs = await Bug.find({ user: req.user.id }).sort({ date: -1 });
-    res.json(bugs);
+    const bugs = await Bug.find();
+    res.status(200).json(bugs);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
 
-// @route   POST api/bugs
+// @route   POST http://localhost:5000/api/bugs/add
 // @desc    Add new bug
 // @access  Private
 router.post(
   '/add',
-  [
-    auth,
+  isAuth,
     [
       check('name', 'Name is required').not().isEmpty(),
       check('description', 'Description is required').not().isEmpty(),
       check('location', 'Location is required').not().isEmpty(),
     ],
-  ],
+  
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -47,7 +46,7 @@ router.post(
         priority,
         status,
         location,
-        user: req.user.id,
+        
       });
 
       const bug = await newBug.save();
@@ -60,10 +59,10 @@ router.post(
   }
 );
 
-// @route   PUT api/bugs/:id
+// @route   PUT http://localhost:5000/api/bugs/update/:id
 // @desc    Update bug
 // @access  Private
-router.put('/:id', auth, async (req, res) => {
+router.put('/update/:id',isAuth,authAdmin,authDev,  async (req, res) => {
   const { name, description, priority, status, location } = req.body;
 
   // Build bug object
@@ -80,9 +79,9 @@ router.put('/:id', auth, async (req, res) => {
     if (!bug) return res.status(404).json({ msg: 'Bug not found' });
 
     // Make sure user owns bug
-    if (bug.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: 'Not authorized' });
-    }
+    // if (bug.user.toString() !== req.user.id) {
+    //   return res.status(401).json({ msg: 'Not authorized' });
+    // }
 
     bug = await Bug.findByIdAndUpdate(
       req.params.id,
@@ -98,19 +97,19 @@ router.put('/:id', auth, async (req, res) => {
   }
 });
 
-// @route   DELETE api/bugs/:id
+// @route   DELETE http://localhost:5000/api/bugs/delete/:id
 // @desc    Delete bug
 // @access  Private
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/delete/:id',isAuth,authAdmin,  async (req, res) => {
   try {
     let bug = await Bug.findById(req.params.id);
 
     if (!bug) return res.status(404).json({ msg: 'Bug not found' });
 
     // Make sure user owns bug
-    if (bug.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: 'Not authorized' });
-    }
+    // if (bug.user.toString() !== req.user.id) {
+    //   return res.status(401).json({ msg: 'Not authorized' });
+    // }
 
     await Bug.findByIdAndRemove(req.params.id);
     res.json({ msg: 'Bug removed' });
@@ -120,4 +119,23 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
+
+router.put("/affect",isAuth,authAdmin, async (req,res)=>{
+  const { bug_id, user_id } = req.body;
+
+  const bug=await Bug.findById(bug_id);
+  bug.affectedTo = user_id;
+  await bug.save();
+  res.json(bug);
+});
+router.get("/affect/:_id", isAuth,authAdmin, async (req,res)=>{
+  const { _id } = req.params;
+
+  const bug=await Bug.findById(_id).populate("affectedTo");
+  bug.affectedTo.email = undefined
+  bug.affectedTo.password = undefined
+  delete bug.affectedTo.email
+  delete bug.affectedTo.password
+  res.json(bug);
+});
 module.exports = router;

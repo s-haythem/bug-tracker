@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middlewares/isAuth');
+const {isAuth, authAdmin, authDev, authClient} = require("../middlewares/isAuth");
 const { check, validationResult } = require('express-validator');
-
-
 
 const Project = require('../Models/Project')
 
 // @route   GET api/projects
 // @desc    Get all users projects
 // @access  Private
-router.get('/', auth, async (req, res) => {
+router.get('/all', isAuth,authAdmin, async (req, res) => {
   try {
     const projects = await Project.find({ user: req.user.id });
     res.json(projects);
@@ -26,7 +24,8 @@ router.get('/', auth, async (req, res) => {
 router.post(
   '/add',
   [
-    auth,
+    isAuth,
+    authAdmin,
     [
       check('title', 'Title is required').not().isEmpty(),
       check('description', 'Description is required').not().isEmpty(),
@@ -42,7 +41,7 @@ router.post(
     const { title, description, deliveryTime } = req.body;
 
     try {
-      const newBug = new Bug({
+      const newProject = new Project({
         title,
         description,
         deliveryTime,
@@ -62,7 +61,7 @@ router.post(
 // @route   PUT api/projects/:id
 // @desc    Update project
 // @access  Private
-router.put('/:id', auth, async (req, res) => {
+router.put('/update/:id', isAuth,authAdmin, async (req, res) => {
   const { title, description, deliveryTime } = req.body;
 
   // Build project object
@@ -96,7 +95,7 @@ router.put('/:id', auth, async (req, res) => {
 // @route   DELETE api/projects/:id
 // @desc    Delete project
 // @access  Private
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/delete/:id', isAuth,authAdmin, async (req, res) => {
   try {
     let project = await Project.findById(req.params.id);
 
@@ -109,6 +108,25 @@ router.delete('/:id', auth, async (req, res) => {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
+});
+
+router.put("/affect",isAuth,authAdmin, async (req,res)=>{
+  const { project_id, user_id } = req.body;
+
+  const project=await Project.findById(project_id);
+  project.affectedTo = user_id;
+  await project.save();
+  res.json(project);
+});
+router.get("/affect/:_id", isAuth,authAdmin, async (req,res)=>{
+  const { _id } = req.params;
+
+  const project=await Proect.findById(_id).populate("affectedTo");
+  project.affectedTo.email = undefined
+  project.affectedTo.password = undefined
+  delete project.affectedTo.email
+  delete project.affectedTo.password
+  res.json(project);
 });
 
 module.exports = router;
