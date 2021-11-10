@@ -1,0 +1,38 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    max-width: 100%;
+    
+}
+.dash-nav {
+    display: flex;
+    width: 100%;
+    justify-content:stretch;
+    align-items: center;
+    height: 75px;
+    background-color: #141414;
+    color: blanchedalmond;
+}
+.dash-nav-left {
+    display: flex;
+    width: 80%;
+    align-items: center;
+}
+ul {
+    list-style: none;
+}
+.dash-space {
+    display: flex;
+    width: 100%;
+    margin-top: 2%;
+    background-color: blue;
+}
+.dash-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    background-color: blueviolet;
+}
