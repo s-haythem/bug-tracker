@@ -31,18 +31,17 @@ dispatch(logoutHandler())
                 <div className="dash-left">
                     <ul>
                         <li>
-                            <span>Projects</span>
+                            <span><Link to="/dashboard/projects">Projects</Link></span>
                         </li>
                         <li>
-                            <span>Bugs</span>
+                            <span><Link to="/dashboard/bugs">Bugs</Link></span>
                         </li>
                         <li>
-                            <span>Profile</span>
+                            <span><Link to="/dashboard/profile">Profile</Link></span>
                         </li>
                     </ul>
                 </div>
                 <div className="dash-work">
-                    <AddBugs/>
                     <GetBugs/>
                 </div>
 
