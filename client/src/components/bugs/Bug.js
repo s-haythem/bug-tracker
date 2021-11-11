@@ -14,6 +14,7 @@ const Bug = ({bug}) => {
       <th>location</th>
       <th>status</th>
       <th>priority</th>
+      <th>Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@ const Bug = ({bug}) => {
       <td>{bug.location}</td>
       <td>{bug.status}</td>
       <td>{bug.priority}</td>
+      <td><EditBugs bug={bug}/></td>
     </tr>
   </tbody>
 </Table>

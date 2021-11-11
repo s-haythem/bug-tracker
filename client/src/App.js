@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
  dispatch(getAuthUser())
  dispatch(getAllBugsHandler())
-  })
+  },[])
 
 
   return (

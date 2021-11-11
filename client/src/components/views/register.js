@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { registerHandler } from "../../redux/action/auth-action";
 import './login.css'
+import { Link } from "react-router-dom";
 
 const Register = () => {
     const [name, setName] = useState("")
@@ -64,7 +65,7 @@ const Register = () => {
                 <option value="client">client</option>
             </select> */}
             </label>
-            <button type="button" className="submit" onClick={registerUser}>Sign Up</button>
+            <button type="button" className="submit" onClick={registerUser}><Link to="/login">Sign Up</Link></button>
         </div>
         <div className="sub-cont">
             <div className="img"></div>

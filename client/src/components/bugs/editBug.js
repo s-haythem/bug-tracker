@@ -25,7 +25,7 @@ const EditBugs = ({bug}) => {
     return (
         <div>
             <button className="btn-edit" onClick={handleShow}>
-                    Edit bug
+                    Edit
              </button>
              <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
