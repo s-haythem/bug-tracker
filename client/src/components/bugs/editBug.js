@@ -2,7 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { updateBugHandler } from "../../redux/action/bug_actions";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
+import "./editBug.css"
 
 const EditBugs = ({bug}) => {
     const [show, setShow] = useState(false);
@@ -23,9 +24,9 @@ const EditBugs = ({bug}) => {
     }
     return (
         <div>
-            <Button variant="primary" onClick={handleShow}>
+            <button className="btn-edit" onClick={handleShow}>
                     Edit bug
-             </Button>
+             </button>
              <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit bug</Modal.Title>
