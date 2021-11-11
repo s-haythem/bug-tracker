@@ -1,6 +1,6 @@
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LoginModal from "../components/auth/loginModal";
 import RegiterModal from "../components/auth/registerModal";
 import { logoutHandler } from "../redux/action/auth-action";
@@ -10,7 +10,6 @@ export default function NavFct() {
   const isAuth = useSelector(state => state.auth.isAuth)
   const dispatch = useDispatch()
 
-  const history=useHistory()
   const logoutUser=()=>{
 dispatch(logoutHandler())
 

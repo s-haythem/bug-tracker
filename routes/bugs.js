@@ -9,7 +9,7 @@ const Bug = require('../Models/Bug');
 // @route   GET api/bugs
 // @desc    Get all users bugs
 // @access  Private
-router.get('/',isAuth,authAdmin || authDev,  async (req, res) => {
+router.get('/',isAuth,  async (req, res) => {
   try {
     const bugs = await Bug.find();
     res.status(200).json(bugs);
@@ -24,7 +24,7 @@ router.get('/',isAuth,authAdmin || authDev,  async (req, res) => {
 // @access  Private
 router.post(
   '/add',
-  isAuth,
+  
     [
       check('name', 'Name is required').not().isEmpty(),
       check('description', 'Description is required').not().isEmpty(),

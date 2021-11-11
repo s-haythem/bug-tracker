@@ -2,7 +2,7 @@ import {ADD_PROJECT, GET_ALL_PROJECTS, UPDATE_PROJECT, DELETE_PROJECT, AFFECT_PR
 
 const initialState={
     isAuth:false,
-    project:null
+    project:[]
 }
 
 export const  projectReducer=(state=initialState,action)=> {
@@ -17,7 +17,7 @@ export const  projectReducer=(state=initialState,action)=> {
         return {
             ...state,
             isAuth :true,
-            ...action.payload
+            project : [...state.project, action.payload]
         }
         case UPDATE_PROJECT : 
         return {

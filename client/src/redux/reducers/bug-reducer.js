@@ -2,7 +2,7 @@ import {ADD_BUG, GET_ALL_BUGS, UPDATE_BUG, DELETE_BUG, AFFECT_BUG, GET_AFFECTED_
 
 const initialState={
     isAuth:false,
-    bug:null
+    bug:[]
 }
 
 export const  bugReducer=(state=initialState,action)=> {
@@ -17,7 +17,7 @@ export const  bugReducer=(state=initialState,action)=> {
         return {
             ...state,
             isAuth :true,
-            ...action.payload
+            bug : [...state.bug, action.payload]
         }
         case UPDATE_BUG : 
         return {

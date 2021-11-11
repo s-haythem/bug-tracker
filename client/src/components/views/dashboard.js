@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
 import { logoutHandler } from "../../redux/action/auth-action";
+import AddBugs from '../bugs/addBugs';
+import GetBugs from '../bugs/getBugs';
 import "./dashboard.css"
 
 
@@ -40,7 +42,8 @@ dispatch(logoutHandler())
                     </ul>
                 </div>
                 <div className="dash-work">
-
+                    <AddBugs/>
+                    <GetBugs/>
                 </div>
 
             </div>
