@@ -18,8 +18,8 @@ const EditBugs = ({bug}) => {
 
     const EditBug = (e) => {
         e.preventDefault()
-        
-        dispatch(updateBugHandler(bug._id))
+        const editedBug= {name,description,location,priority,status}
+        dispatch(updateBugHandler(bug._id,editedBug))
         handleClose();
     }
     return (

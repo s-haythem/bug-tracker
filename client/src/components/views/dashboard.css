@@ -27,19 +27,31 @@ ul {
     display: flex;
     justify-content: space-around;
     width: 100%;
-    margin-top: 2%;
-    background-color: cornflowerblue;
+    margin-top: 2%
 }
 .dash-left {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-    background-color: blueviolet;
+    justify-content:center;
+    width: 20%
 }
 .dash-work {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 80%;
+}
+ul {
+    width: 100%;
+    margin-top: 20%;
+}
+li {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    background-color: #7c7c7c;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: whitesmoke;
 }

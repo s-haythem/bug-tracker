@@ -1,10 +1,8 @@
-.bugs-card {
+.bugs-table {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: grey;
-    color: whitesmoke;
     padding: 5px;
-    margin : 2%;
-    width: 25%;
+    margin : 1%;
+    width: 100%;
 }

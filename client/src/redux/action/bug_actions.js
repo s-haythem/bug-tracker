@@ -33,13 +33,18 @@ export const addBugHandler = (newBug) => async (dispatch) => {
     }
   };
 
-  export const updateBugHandler = (bug_id) => async (dispatch) => {
+  export const updateBugHandler = (bug_id,editedBug) => async (dispatch) => {
+    const config = {
+      bug_id,
+      editedBug
+    }
     try {
-      const res = await axios.put("http://localhost:5000/api/bugs/update/:id", bug_id)
+      const res = await axios.put("http://localhost:5000/api/bugs/update/:id", config)
       dispatch({
         type : UPDATE_BUG,
         payload : res.data
       })
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
