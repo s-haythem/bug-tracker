@@ -15,7 +15,7 @@ const Bug = ({bug}) => {
       <th>location</th>
       <th>status</th>
       <th>priority</th>
-      <th>Edit</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>

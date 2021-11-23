@@ -13,7 +13,7 @@ const Project = ({project}) => {
       <th>name</th>
       <th>description</th>
       <th>deliveryTime</th>
-      <th>Edit</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
