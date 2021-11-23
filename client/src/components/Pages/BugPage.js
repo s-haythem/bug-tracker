@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import AddBugs from "../bugs/addBugs"
+import GetBugs from "../bugs/getBugs"
 
 
 const BugPage = () => {
@@ -7,7 +8,9 @@ const BugPage = () => {
         <div>
             welcome to bug page
             <h1 style={{backgroundColor:"grey"}}><Link to="/dashboard">back to dashboard</Link></h1>
+            
             <AddBugs/>
+            <GetBugs/>
         </div>
     )
 }

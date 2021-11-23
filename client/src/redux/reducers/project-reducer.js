@@ -17,7 +17,7 @@ export const  projectReducer=(state=initialState,action)=> {
         return {
             ...state,
             isAuth :true,
-            project : [...state.project, action.payload]
+            project : action.payload
         }
         case UPDATE_PROJECT : 
         return {

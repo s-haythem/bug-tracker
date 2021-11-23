@@ -26,31 +26,31 @@ const isAuth = async (req, res, next) => {
   }
 };
 
-const authAdmin =  async (req, res, next) => {
-  const userRole = req.user.role;
-  if (userRole !== "admin") {
-    res.status(401);
-    return res.send("Not allowed");
-  }
-  next();
-};
+// const authAdmin =  async (req, res, next) => {
+//   const userRole = req.user.role;
+//   if (userRole !== "admin") {
+//     res.status(401);
+//     return res.send("Not allowed");
+//   }
+//   next();
+// };
 
-const authDev =  async (req, res, next) => {
-  const userRole = req.user.role;
-  if (userRole !== "developer") {
-    res.status(401);
-    return res.send("Not allowed");
-  }
-  next();
-};
+// const authDev =  async (req, res, next) => {
+//   const userRole = req.user.role;
+//   if (userRole !== "developer") {
+//     res.status(401);
+//     return res.send("Not allowed");
+//   }
+//   next();
+// };
 
-const authClient =  async (req, res, next) => {
-  const userRole = req.user.role;
-  if (userRole !== "client") {
-    res.status(401);
-    return res.send("Not allowed");
-  }
-  next();
-};
+// const authClient =  async (req, res, next) => {
+//   const userRole = req.user.role;
+//   if (userRole !== "client") {
+//     res.status(401);
+//     return res.send("Not allowed");
+//   }
+//   next();
+// };
 
-module.exports = { isAuth, authAdmin, authDev, authClient };
+module.exports = { isAuth };

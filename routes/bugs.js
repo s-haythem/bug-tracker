@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {isAuth, authAdmin, authDev, authClient} = require("../middlewares/isAuth");
+const {isAuth} = require("../middlewares/isAuth");
 const { check, validationResult } = require('express-validator');
 
 
@@ -62,7 +62,7 @@ router.post(
 // @route   PUT http://localhost:5000/api/bugs/update/:id
 // @desc    Update bug
 // @access  Private
-router.put('/update/:id',isAuth,authAdmin,authDev,  async (req, res) => {
+router.put('/update/:id',  async (req, res) => {
   const { name, description, priority, status, location } = req.body;
 
   // Build bug object
@@ -100,7 +100,7 @@ router.put('/update/:id',isAuth,authAdmin,authDev,  async (req, res) => {
 // @route   DELETE http://localhost:5000/api/bugs/delete/:id
 // @desc    Delete bug
 // @access  Private
-router.delete('/delete/:id',isAuth,authAdmin,  async (req, res) => {
+router.delete('/delete/:id',  async (req, res) => {
   try {
     let bug = await Bug.findById(req.params.id);
 
@@ -120,7 +120,7 @@ router.delete('/delete/:id',isAuth,authAdmin,  async (req, res) => {
 });
 
 
-router.put("/affect",isAuth,authAdmin, async (req,res)=>{
+router.put("/affect",isAuth, async (req,res)=>{
   const { bug_id, user_id } = req.body;
 
   const bug=await Bug.findById(bug_id);
@@ -128,7 +128,7 @@ router.put("/affect",isAuth,authAdmin, async (req,res)=>{
   await bug.save();
   res.json(bug);
 });
-router.get("/affect/:_id", isAuth,authAdmin, async (req,res)=>{
+router.get("/affect/:_id", isAuth, async (req,res)=>{
   const { _id } = req.params;
 
   const bug=await Bug.findById(_id).populate("affectedTo");

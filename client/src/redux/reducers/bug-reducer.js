@@ -17,7 +17,7 @@ export const  bugReducer=(state=initialState,action)=> {
         return {
             ...state,
             isAuth :true,
-            bug : [...state.bug, action.payload]
+            bug : action.payload
         }
         case UPDATE_BUG : 
         return {
@@ -29,7 +29,7 @@ export const  bugReducer=(state=initialState,action)=> {
         return {
             ...state,
             isAuth : true,
-            bug : state.bug.map(el=> el._id== action.payload._id? {...el, bug:action.payload.editedBug}:el )
+            bug : action.payload
         }
         case AFFECT_BUG: 
         return {

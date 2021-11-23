@@ -95,7 +95,7 @@ export const getAuthAllUser = () => async (dispatch) => {
 };
 export const deleteUser = (user_id) => async (dispatch) => {
   try {
-    const res = await axios.delete("http://localhost:5000/api/auth/delete/:id", user_id)
+    const res = await axios.delete(`http://localhost:5000/api/auth/delete/${user_id}`)
     dispatch({
       type : DELETE_USER,
       payload : res.data
@@ -104,9 +104,9 @@ export const deleteUser = (user_id) => async (dispatch) => {
     console.log(error);
   }
 }
-export const updateUser = (user_id) => async (dispatch) => {
+export const updateUser = (user_id,updatedUser) => async (dispatch) => {
   try {
-    const res = await axios.put("http://localhost:5000/api/auth/edit/:id", user_id)
+    const res = await axios.put(`http://localhost:5000/api/auth/edit/${user_id}`, updatedUser)
     dispatch({
       type : UPDATE_USER,
       payload : res.data

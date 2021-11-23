@@ -3,7 +3,7 @@ const router = express.Router();
 let User = require("../Models/Users");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const {isAuth, authAdmin, authDev, authClient} = require("../middlewares/isAuth");
+const {isAuth} = require("../middlewares/isAuth");
 const { loginValidation, validation } = require("../middlewares/validation");
 
 
@@ -68,7 +68,7 @@ router.post("/login", loginValidation, validation, async (req, res) => {
 //@url: http://localhost:5000/api/auth/delete/:id
 //@role:delete user
 //private
-router.delete("/delete/:id",isAuth, authAdmin, async (req, res) => {
+router.delete("/delete/:id",isAuth,  async (req, res) => {
   const id = req.params.id;
   try {
     let user = await User.findByIdAndRemove(id);
@@ -103,7 +103,7 @@ router.get("/user", isAuth, (req, res) => {
 //@route http://localhost:5000/api/auth/all
 //@role: get all users
 //@access : private
-router.get("/all", isAuth,authAdmin, async (req, res) => {
+router.get("/all", isAuth, async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);

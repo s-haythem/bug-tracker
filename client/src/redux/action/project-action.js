@@ -18,44 +18,28 @@ export const getAllProjectHandler = () => async (dispatch) => {
     }
   };
 
-export const addProjectHandler = (newProject) => async (dispatch) => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/projects/add",
-        newProject
-      );
-      dispatch({
-        type: ADD_PROJECT,
-        payload: res.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  export const updateProjectHandler = (project_id) => async (dispatch) => {
-    try {
-      const res = await axios.put("http://localhost:5000/api/projects/update/:id", project_id)
-      dispatch({
-        type : UPDATE_PROJECT,
-        payload : res.data
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  export const addProjectHandler =(newProject)=>async(dispatch)=>{
+    await
+    axios.post(`http://localhost:5000/api/projects/add`,newProject)
+    .then((res)=>dispatch(getAllProjectHandler()))
+    .catch((error)=>console.log(error))
+}
 
-  export const deleteProjectHandler = (project_id) => async (dispatch) => {
-    try {
-      const res = await axios.delete("http://localhost:5000/api/projects/delete/:id", project_id)
-      dispatch({
-        type : DELETE_PROJECT,
-        payload : res.data
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
+  export const updateProjectHandler =(project_id,updatedProject)=>async(dispatch)=>{
+    await
+    axios.post(`http://localhost:5000/api/projects/update/${project_id}`, updatedProject)
+    .then((res)=>dispatch(getAllProjectHandler()))
+    .catch((error)=>console.log(error))
+}
+
+  export const deleteProjectHandler =(project_id)=>async(dispatch)=>{
+    await
+    axios.post(`http://localhost:5000/api/projects/update/${project_id}`)
+    .then((res)=>dispatch(getAllProjectHandler()))
+    .catch((error)=>console.log(error))
+}
 
   export const affectProjectHandler = (project_id, user_id) => async (dispatch) => {
     try {

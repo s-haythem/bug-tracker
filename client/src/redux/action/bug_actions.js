@@ -18,49 +18,29 @@ export const getAllBugsHandler = () => async (dispatch) => {
     }
   };
 
-export const addBugHandler = (newBug) => async (dispatch) => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/bugs/add",
-        newBug
-      );
-      dispatch({
-        type: ADD_BUG,
-        payload: res.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  export const updateBugHandler = (bug_id,editedBug) => async (dispatch) => {
-    const config = {
-      bug_id,
-      editedBug
-    }
-    try {
-      const res = await axios.put("http://localhost:5000/api/bugs/update/:id", config)
-      dispatch({
-        type : UPDATE_BUG,
-        payload : res.data
-      })
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  export const addBugHandler =(newBug)=>async(dispatch)=>{
+    await
+    axios.post(`http://localhost:5000/api/bugs/add`,newBug)
+    .then((res)=>dispatch(getAllBugsHandler()))
+    .catch((error)=>console.log(error))
+}
 
-  export const deleteBugHandler = (bug_id) => async (dispatch) => {
-    try {
-      const res = await axios.delete("http://localhost:5000/api/bugs/delete/:id", bug_id)
-      dispatch({
-        type : DELETE_BUG,
-        payload : res.data
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
+  export const updateBugHandler =(bug_id,editedBug)=>async(dispatch)=>{
+    await
+    axios.put(`http://localhost:5000/api/bugs/update/${bug_id}`,editedBug)
+    .then((res)=>dispatch(getAllBugsHandler()))
+    .catch((error)=>console.log(error))
+}
+  
+
+  export const deleteBugHandler =(bug_id)=>async(dispatch)=>{
+    await
+    axios.delete(`http://localhost:5000/api/bugs/delete/${bug_id}`)
+    .then((res)=>dispatch(getAllBugsHandler()))
+    .catch((error)=>console.log(error))
+}
 
   export const affectBugHandler = (bug_id, user_id) => async (dispatch) => {
     try {

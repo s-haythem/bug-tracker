@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from './components/views/dashboard'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAuthUser } from './redux/action/auth-action';
+import { getAuthAllUser, getAuthUser } from './redux/action/auth-action';
 import PrivateRoute from './components/routes/privateRoute';
 import Login from './components/views/login';
 import BugPage from './components/Pages/BugPage';
@@ -12,12 +12,15 @@ import ProjectPage from './components/Pages/ProjectPage';
 import ProfilePage from './components/Pages/ProfilePage';
 import Register from './components/views/register';
 import {getAllBugsHandler} from './redux/action/bug_actions'
+import { getAllProjectHandler } from './redux/action/project-action';
 function App() {
  
   const dispatch = useDispatch()
   useEffect(() => {
  dispatch(getAuthUser())
  dispatch(getAllBugsHandler())
+ dispatch(getAllProjectHandler())
+ dispatch(getAuthAllUser())
   },[])
 
 

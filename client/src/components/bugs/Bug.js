@@ -1,6 +1,7 @@
 import "./Bug.css"
 import EditBugs from "./editBug";
 import { Table } from "react-bootstrap";
+import DeleteBug from "./deleteBug";
 
 const Bug = ({bug}) => {
     console.log(bug);
@@ -24,31 +25,13 @@ const Bug = ({bug}) => {
       <td>{bug.location}</td>
       <td>{bug.status}</td>
       <td>{bug.priority}</td>
-      <td><EditBugs bug={bug}/></td>
+      <td>
+        <EditBugs bug={bug}/>
+        <DeleteBug bug={bug}/>
+      </td>
     </tr>
   </tbody>
 </Table>
-            {/* <div>
-                <span>Name</span>
-                <h4>{bug.name}</h4>
-            </div>
-            <div>
-                <span>Description</span>
-                <h4>{bug.description}</h4>
-            </div>
-            <div>
-                <span>Location</span>
-                <h4>{bug.location}</h4>
-            </div>
-            <div>
-                <span>Priority</span>
-                <h4>{bug.priority}</h4>
-            </div>
-            <div>
-                <span>Status</span>
-                <h4>{bug.status}</h4>
-            </div>
-           <EditBugs bug={bug}/> */}
         </div>
     )
 }

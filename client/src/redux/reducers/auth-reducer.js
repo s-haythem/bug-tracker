@@ -3,6 +3,7 @@ import { DELETE_USER, ERROR_USER, GET_ALL_USERS, GET_USER, LOGIN_USER, LOGOUT_US
 const initialState={
     token:localStorage.getItem('token'),
     isAuth:false,
+    allUsers : [],
     user:null
 }
 
@@ -32,7 +33,7 @@ case GET_USER:return{
 case GET_ALL_USERS:return{
     ...state,
     isAuth:true,
-    user:action.payload
+    allUsers:action.payload
    
 }
 case DELETE_USER:return{

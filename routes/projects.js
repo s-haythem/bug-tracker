@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {isAuth, authAdmin, authDev, authClient} = require("../middlewares/isAuth");
+const {isAuth} = require("../middlewares/isAuth");
 const { check, validationResult } = require('express-validator');
 
 const Project = require('../Models/Project')
@@ -8,9 +8,9 @@ const Project = require('../Models/Project')
 // @route   GET api/projects
 // @desc    Get all users projects
 // @access  Private
-router.get('/all', isAuth,authAdmin, async (req, res) => {
+router.get('/', isAuth, async (req, res) => {
   try {
-    const projects = await Project.find({ user: req.user.id });
+    const projects = await Project.find();
     res.json(projects);
   } catch (err) {
     console.error(err.message);
@@ -24,8 +24,8 @@ router.get('/all', isAuth,authAdmin, async (req, res) => {
 router.post(
   '/add',
   [
-    isAuth,
-    authAdmin,
+    
+    
     [
       check('title', 'Title is required').not().isEmpty(),
       check('description', 'Description is required').not().isEmpty(),
@@ -44,8 +44,7 @@ router.post(
       const newProject = new Project({
         title,
         description,
-        deliveryTime,
-        user: req.user.id,
+        deliveryTime
       });
 
       const project = await newProject.save();
@@ -61,7 +60,7 @@ router.post(
 // @route   PUT api/projects/:id
 // @desc    Update project
 // @access  Private
-router.put('/update/:id', isAuth,authAdmin, async (req, res) => {
+router.put('/update/:id',  async (req, res) => {
   const { title, description, deliveryTime } = req.body;
 
   // Build project object
@@ -95,7 +94,7 @@ router.put('/update/:id', isAuth,authAdmin, async (req, res) => {
 // @route   DELETE api/projects/:id
 // @desc    Delete project
 // @access  Private
-router.delete('/delete/:id', isAuth,authAdmin, async (req, res) => {
+router.delete('/delete/:id', isAuth, async (req, res) => {
   try {
     let project = await Project.findById(req.params.id);
 
@@ -110,7 +109,7 @@ router.delete('/delete/:id', isAuth,authAdmin, async (req, res) => {
   }
 });
 
-router.put("/affect",isAuth,authAdmin, async (req,res)=>{
+router.put("/affect",isAuth, async (req,res)=>{
   const { project_id, user_id } = req.body;
 
   const project=await Project.findById(project_id);
@@ -118,7 +117,7 @@ router.put("/affect",isAuth,authAdmin, async (req,res)=>{
   await project.save();
   res.json(project);
 });
-router.get("/affect/:_id", isAuth,authAdmin, async (req,res)=>{
+router.get("/affect/:_id", isAuth, async (req,res)=>{
   const { _id } = req.params;
 
   const project=await Proect.findById(_id).populate("affectedTo");
