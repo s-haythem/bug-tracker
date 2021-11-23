@@ -10,7 +10,7 @@ const Project = ({project}) => {
             <Table striped bordered hover>
   <thead>
     <tr>
-      <th>name</th>
+      <th>title</th>
       <th>description</th>
       <th>deliveryTime</th>
       <th>Actions</th>
@@ -18,7 +18,7 @@ const Project = ({project}) => {
   </thead>
   <tbody>
     <tr>
-      <td>{project.name}</td>
+      <td>{project.title}</td>
       <td>{project.description}</td>
       <td>{project.deliveryTime}</td>
       <td>
