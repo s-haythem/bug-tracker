@@ -68,7 +68,7 @@ router.post("/login", loginValidation, validation, async (req, res) => {
 //@url: http://localhost:5000/api/auth/delete/:id
 //@role:delete user
 //private
-router.delete("/delete/:id",isAuth,  async (req, res) => {
+router.delete("/delete/:id",  async (req, res) => {
   const id = req.params.id;
   try {
     let user = await User.findByIdAndRemove(id);
@@ -81,7 +81,7 @@ router.delete("/delete/:id",isAuth,  async (req, res) => {
 //@url: http://localhost:5000/api/auth/edit/:id
 //@role: update contact
 //private
-router.put("/edit/:id", isAuth, async (req, res) => {
+router.put("/edit/:id",  async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -95,9 +95,9 @@ router.put("/edit/:id", isAuth, async (req, res) => {
 //@route http://localhost:5000/api/auth/user
 //@role: get a user
 //@access : private
-router.get("/user", isAuth, (req, res) => {
+router.get("/user", isAuth, async (req, res) => {
  
-  const {user} = req;
+  const {user} = await req;
   res.status(200).json(user);
 });
 //@route http://localhost:5000/api/auth/all

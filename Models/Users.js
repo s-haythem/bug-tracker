@@ -34,7 +34,7 @@ const mongoose=require('mongoose');
      },
      role : {
          type : String,
-         enum : ["admin","developer","client"]
+         required : true
      }
  })
 

@@ -1,8 +1,9 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector} from 'react-redux'
+import DeleteUserHandler from './deleteUser'
+import EditUser from './editUser'
 
-const UserProfile = () => {
-    const dispatch = useDispatch() 
+const UserProfile = () => { 
     const user = useSelector(state => state.auth.user)
     return (
         <div className="profile">
@@ -12,6 +13,8 @@ const UserProfile = () => {
             <p >{`Address : ${user?.address}`}</p>
             <p >{`Email : ${user?.email}`}</p>
             <p >{`Role : ${user?.role}`}</p>
+            <DeleteUserHandler user={user}/>
+            <EditUser user={user}/>
         </div>
     )
 }

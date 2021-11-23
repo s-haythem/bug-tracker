@@ -58,12 +58,11 @@ const Register = () => {
             </label>
             <label>
             <span>Role</span>
-            <input type="text" onChange={(e) => setRole(e.target.value)} />
-            {/* <select  name='role' onChange={(e) => setRole(e.target.value)}>
+            <select  name='role' onChange={(e) => setRole(e.target.value)}>
                 <option value="Admin">Admin</option>
-                <option value="Dev">Dev</option>
+                <option value="Developer">Developer</option>
                 <option value="client">client</option>
-            </select> */}
+            </select>
             </label>
             <button type="button" className="submit" onClick={registerUser}><Link to="/login">Sign Up</Link></button>
         </div>

@@ -10,12 +10,12 @@ export default function PrivateRoute({ component: Component, ...rest }) {
    <div>
      <Route component={Component} {...rest} />
    </div>)
- else if (isAuth && role==="admin") {
+ else if (isAuth && role==="Admin") {
     return( <div>
        <Route component={Component} {...rest} />
      </div> )
    }
- else if (isAuth && role==="developer") {
+ else if (isAuth && role==="Developer") {
      return (<div>
        <Route component={Component} {...rest} />
      </div> )

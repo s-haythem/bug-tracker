@@ -104,14 +104,11 @@ export const deleteUser = (user_id) => async (dispatch) => {
     console.log(error);
   }
 }
-export const updateUser = (user_id,updatedUser) => async (dispatch) => {
-  try {
-    const res = await axios.put(`http://localhost:5000/api/auth/edit/${user_id}`, updatedUser)
-    dispatch({
-      type : UPDATE_USER,
-      payload : res.data
-    })
-  } catch (error) {
-    console.log(error);
-  }
+
+
+export const updateUser =(user_id,updatedUser)=>async(dispatch)=>{
+  await
+  axios.put(`http://localhost:5000/api/auth/edit/${user_id}`,updatedUser)
+  .then((res)=>dispatch(getAuthUser()))
+  .catch((error)=>console.log(error))
 }
