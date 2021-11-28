@@ -5,7 +5,6 @@ import Bug from "./Bug";
 
 const GetBugs = () => {
     const bugs = useSelector(state => state.bug.bug)
-    console.log(bugs);
     return (
         <div className="bugs-list">
             {bugs.map((el) => < Bug  bug={el}/>)}

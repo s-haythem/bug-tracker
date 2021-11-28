@@ -1,33 +1,25 @@
 
 import EditProjects from "./editProject";
-import { Table } from "react-bootstrap";
 import DeleteProject from "./deleteProject";
+import { Card } from "react-bootstrap";
+import "./project.css"
 
 const Project = ({project}) => {
     
     return (
-        <div className="bugs-table">
-            <Table striped bordered hover>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>description</th>
-      <th>deliveryTime</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{project.title}</td>
-      <td>{project.description}</td>
-      <td>{project.deliveryTime}</td>
-      <td>
+        <div className="project-card">
+
+<Card style={{ width: '18rem' }}>
+  <Card.Body>
+    <Card.Title>{project.title}</Card.Title>
+    <Card.Text>{`Description : ${project.description}`}</Card.Text>
+    <Card.Text>{`Delivery Time : ${project.deliveryTime}`}</Card.Text>
+      <div className="project-btns">
         <EditProjects project={project}/>
         <DeleteProject project={project}/>
-      </td>
-    </tr>
-  </tbody>
-</Table>
+    </div>
+  </Card.Body>
+</Card>
         </div>
     )
 }

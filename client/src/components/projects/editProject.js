@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { updateProjectHandler } from "../../redux/action/project-action";
 import { Modal } from "react-bootstrap";
+import "./editProject.css"
 
 
 const EditProjects = ({project}) => {

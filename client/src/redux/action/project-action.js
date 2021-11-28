@@ -27,16 +27,16 @@ export const getAllProjectHandler = () => async (dispatch) => {
 }
 
 
-  export const updateProjectHandler =(project_id,updatedProject)=>async(dispatch)=>{
+  export const updateProjectHandler =(project_id,editedProject)=>async(dispatch)=>{
     await
-    axios.post(`http://localhost:5000/api/projects/update/${project_id}`, updatedProject)
+    axios.put(`http://localhost:5000/api/projects/update/${project_id}`, editedProject)
     .then((res)=>dispatch(getAllProjectHandler()))
     .catch((error)=>console.log(error))
 }
 
   export const deleteProjectHandler =(project_id)=>async(dispatch)=>{
     await
-    axios.post(`http://localhost:5000/api/projects/update/${project_id}`)
+    axios.delete(`http://localhost:5000/api/projects/delete/${project_id}`)
     .then((res)=>dispatch(getAllProjectHandler()))
     .catch((error)=>console.log(error))
 }

@@ -65,9 +65,9 @@ router.put('/update/:id',  async (req, res) => {
 
   // Build project object
   const projectFields = {};
-  if (title) bugFields.title = title;
-  if (description) bugFields.description = description;
-  if (deliveryTime) bugFields.deliveryTime = deliveryTime;
+  if (title) projectFields.title = title;
+  if (description) projectFields.description = description;
+  if (deliveryTime) projectFields.deliveryTime = deliveryTime;
   
 
   try {
@@ -94,7 +94,7 @@ router.put('/update/:id',  async (req, res) => {
 // @route   DELETE api/projects/:id
 // @desc    Delete project
 // @access  Private
-router.delete('/delete/:id', isAuth, async (req, res) => {
+router.delete('/delete/:id',  async (req, res) => {
   try {
     let project = await Project.findById(req.params.id);
 

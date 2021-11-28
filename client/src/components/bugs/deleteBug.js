@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteBugHandler } from "../../redux/action/bug_actions";
+import "./deleteBug.css"
 
 const DeleteBug = ({bug}) => {
 
@@ -12,7 +13,7 @@ const DeleteBug = ({bug}) => {
 
     return (
         <div>
-            <button type="button" className="submit" onClick={RemoveBug}>delete</button>
+            <button type="submit" className="button-delete" onClick={RemoveBug}>delete</button>
         </div>
     )
 }

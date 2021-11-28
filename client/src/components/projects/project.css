@@ -1,10 +1,9 @@
-.bugs-card {
+.project-card {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin: 2%;
-    
 }
-.bug-btns {
+.project-btns {
     display: flex;
     justify-content: center;
     align-items: center;

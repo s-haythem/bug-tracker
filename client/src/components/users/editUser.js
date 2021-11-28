@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { updateUser } from "../../redux/action/auth-action";
+import "./editUser.css"
 
 const EditUser = ({user}) => {
     const [show, setShow] = useState(false);
@@ -46,7 +47,7 @@ const EditUser = ({user}) => {
                 <span>Phone</span>
                 <input type="text" onChange={(e) => setPhone(e.target.value)} />
             </label>
-            <button type="button" className="submit" onClick={updateUserHandler}>edit user</button>
+            <button type="submit" className="button-edit" onClick={updateUserHandler}>edit user</button>
             </Modal.Body>
       </Modal>
         </div>

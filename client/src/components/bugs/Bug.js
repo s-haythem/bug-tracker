@@ -1,37 +1,24 @@
 import "./Bug.css"
 import EditBugs from "./editBug";
-import { Table } from "react-bootstrap";
 import DeleteBug from "./deleteBug";
+import { Card } from "react-bootstrap";
 
 const Bug = ({bug}) => {
-    console.log(bug);
     return (
-        <div className="bugs-table">
-            <Table striped bordered hover>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>description</th>
-      <th>location</th>
-      <th>status</th>
-      <th>priority</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{bug.name}</td>
-      <td>{bug.description}</td>
-      <td>{bug.location}</td>
-      <td>{bug.status}</td>
-      <td>{bug.priority}</td>
-      <td>
-        <EditBugs bug={bug}/>
-        <DeleteBug bug={bug}/>
-      </td>
-    </tr>
-  </tbody>
-</Table>
+        <div className="bugs-card">
+            <Card style={{ width: '18rem' }}>
+  <Card.Body>
+    <Card.Title>{bug.name}</Card.Title>
+    <Card.Text>{`Location : ${bug.location}`}</Card.Text>
+    <Card.Text>{`Status : ${bug.status}`}</Card.Text>
+    <Card.Text>{`Priority : ${bug.priority}`}</Card.Text>
+    <Card.Text>{`Description : ${bug.description}`}</Card.Text>
+      <div className="bug-btns">
+    <button><EditBugs bug={bug}/></button>
+    <button><DeleteBug bug={bug}/></button>
+    </div>
+  </Card.Body>
+</Card>
         </div>
     )
 }

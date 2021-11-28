@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteProjectHandler } from "../../redux/action/project-action";
+import "./deleteProject.css"
 
 const DeleteProject = ({project}) => {
 
@@ -12,7 +13,7 @@ const DeleteProject = ({project}) => {
 
     return (
         <div>
-            <button type="button" className="submit" onClick={RemoveProject}>delete</button>
+            <button type="submit" className="button-delete" onClick={RemoveProject}>delete</button>
         </div>
     )
 }

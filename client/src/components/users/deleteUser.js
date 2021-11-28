@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteUser } from "../../redux/action/auth-action";
+import "./deleteUser.css"
 
 const DeleteUserHandler = ({user}) => {
 console.log(user);
@@ -12,7 +13,7 @@ console.log(user);
 
     return (
         <div>
-            <button type="button" className="submit" onClick={removeUser}>delete</button>
+            <button type="submit" className="button-delete" onClick={removeUser}>delete</button>
         </div>
     )
 }
