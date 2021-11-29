@@ -15,8 +15,8 @@ const UserProfile = () => {
             <span className="profile-el">{`Email : ${user?.email}`}</span>
             <span className="profile-el">{`Role : ${user?.role}`}</span>
             <div className="btns">
-            <DeleteUserHandler user={user}/>
             <EditUser user={user}/>
+            <DeleteUserHandler user={user}/>
             </div>
             
         </div>

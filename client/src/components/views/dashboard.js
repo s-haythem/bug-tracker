@@ -21,7 +21,7 @@ dispatch(logoutHandler())
         <div className="dashboard">
             <div className="dash-nav">
                 <div className="dash-nav-left">
-                    <p>Bug_Tracker V1.00</p> 
+                    <p style={{marginLeft :"20px"}}>Bug_Tracker V1.00</p> 
                 </div>
                 <div className="dash-nav-right">
                 <button className="Logout" onClick={logoutUser}>
