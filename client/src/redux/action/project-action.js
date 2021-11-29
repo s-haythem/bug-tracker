@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ADD_PROJECT, GET_ALL_PROJECTS, UPDATE_PROJECT, DELETE_PROJECT, AFFECT_PROJECT, GET_AFFECTED_PROJECT} from "../action-types/project-action-types"
+import { GET_ALL_PROJECTS,  AFFECT_PROJECT, GET_AFFECTED_PROJECT} from "../action-types/project-action-types"
 
 export const getAllProjectHandler = () => async (dispatch) => {
     try {

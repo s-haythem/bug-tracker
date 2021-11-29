@@ -60,8 +60,8 @@ dispatch(logoutHandler())
                 </div>
                 <div className="dash-work">
                     <p>This project is created by :<br/>
-                         haythem smirani <br/>
-                         wael chaieb <br/>
+                         Haythem Smirani <br/>
+                         Wael Chaieb <br/>
                          Nidhal Khatar
                     </p>
                 </div>

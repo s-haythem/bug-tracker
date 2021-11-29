@@ -1,13 +1,12 @@
 import axios from "axios";
 import {
-  DELETE_USER,
+
   ERROR_USER,
   GET_ALL_USERS,
   GET_USER,
   LOGIN_USER,
   LOGOUT_USER,
   REGISTER_USER,
-  UPDATE_USER,
 } from "../action-types/auth-action-types";
 
 export const registerHandler = (newUser) => async (dispatch) => {

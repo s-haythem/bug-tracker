@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ADD_BUG, GET_ALL_BUGS, UPDATE_BUG, DELETE_BUG, AFFECT_BUG, GET_AFFECTED_BUG} from "../action-types/bug-action-types"
+import { GET_ALL_BUGS, AFFECT_BUG, GET_AFFECTED_BUG} from "../action-types/bug-action-types"
 
 export const getAllBugsHandler = () => async (dispatch) => {
     try {

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
 import { logoutHandler } from "../../redux/action/auth-action";
 import "../views/dashboard.css"
-import { BsBoxArrowRight } from "react-icons/bs";
+
 
 
 export default function Dashboard() {
