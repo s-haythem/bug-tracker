@@ -46,11 +46,19 @@ const EditBugs = ({bug}) => {
             </label>
             <label>
                 <span>Priority</span>
-                <input type="text" onChange={(e) => setPriority(e.target.value)} />
+                <select  name='Priority' onChange={(e) => setPriority(e.target.value)}>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
             </label>
             <label>
                 <span>Status</span>
-                <input type="text" onChange={(e) => setStatus(e.target.value)} />
+                <select  name='Status' onChange={(e) => setStatus(e.target.value)}>
+                <option value="Open">Open</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Closed">Closed</option>
+            </select>
             </label>
             <button type="button" className="submit" onClick={EditBug}>edit bug</button>
             </Modal.Body>

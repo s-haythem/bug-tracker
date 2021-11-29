@@ -28,13 +28,10 @@ const mongoose=require('mongoose');
          type:String,
          required:true
      },
-     isAdmin : {
-         type : Boolean,
-         default : false
-     },
      role : {
          type : String,
-         required : true
+         required : true,
+         default : "Developer"
      }
  })
 

@@ -93,18 +93,23 @@ export const getAuthAllUser = () => async (dispatch) => {
     console.log(error);
   }
 };
-export const deleteUser = (user_id) => async (dispatch) => {
-  try {
-    const res = await axios.delete(`http://localhost:5000/api/auth/delete/${user_id}`)
-    dispatch({
-      type : DELETE_USER,
-      payload : res.data
-    })
-  } catch (error) {
-    console.log(error);
-  }
+// export const deleteUser = (user_id) => async (dispatch) => {
+//   try {
+//     const res = await axios.delete(`http://localhost:5000/api/auth/delete/${user_id}`)
+//     dispatch({
+//       type : DELETE_USER,
+//       payload : res.data
+//     })
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+export const deleteUser =(user_id)=>async(dispatch)=>{
+  await
+  axios.delete(`http://localhost:5000/api/auth/delete/${user_id}`,)
+  .then((res)=>dispatch(logoutHandler()))
+  .catch((error)=>console.log(error))
 }
-
 
 export const updateUser =(user_id,updatedUser)=>async(dispatch)=>{
   await

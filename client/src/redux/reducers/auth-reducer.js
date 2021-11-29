@@ -38,7 +38,7 @@ case GET_ALL_USERS:return{
 }
 case DELETE_USER:return{
     ...state,
-    isAuth:true,
+    isAuth:false,
     user:action.payload
    
 }
