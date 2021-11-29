@@ -1,5 +1,3 @@
-import AddBugs from "../bugs/addBugs"
-import GetBugs from "../bugs/getBugs"
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
@@ -7,10 +5,10 @@ import { logoutHandler } from "../../redux/action/auth-action";
 import "../views/dashboard.css"
 
 
-
-export default function Dashboard() {
+export default function ContactPage() {
 
 const dispatch = useDispatch() 
+
 const logoutUser=()=>{
 dispatch(logoutHandler())
 }
@@ -20,52 +18,53 @@ dispatch(logoutHandler())
         <div className="dashboard">
             <div className="dash-nav">
                 <div className="dash-nav-left">
-                    <p>Bug_Tracker V1.00</p> 
+                    <p style={{marginLeft :"20px"}}>Bug_Tracker V1.00</p> 
                 </div>
                 <div className="dash-nav-right">
                 <button className="Logout" onClick={logoutUser}>
             <Link to="/">
-            <i class="fas fa-sign-out-alt" id="logout"></i>
+            <i className="fas fa-sign-out-alt" id="logout"></i>
             </Link>
         </button>
                 </div>
                 
             </div>
             <div className="dash-space">
-            <div class="sidebar">
+    
+        <div className="sidebar">
             <header>My Menu</header>
-            <a href="/Dashboard" class="active">
-            <i class="fas fa-qrcode"></i>
+            <a href="/Dashboard" className="active">
+            <i className="fas fa-qrcode"></i>
             <span> Dashboard </span>
             </a>
             <a href="/dashboard/bugs">
-            <i class="fas fa-link"></i>
+            <i className="fas fa-link"></i>
             <span>Bugs</span>
             </a>
             <a href="/dashboard/projects">
-            <i class="fas fa-stream"></i>
+            <i className="fas fa-stream"></i>
             <span>Projects</span>
             </a>
             <a href="/dashboard/profile">
-            <i class="fas fa-user"></i>
+            <i className="fas fa-user"></i>
             <span>Profile</span>
             </a>
             <a href="/dashboard/about">
-            <i class="fas fa-address-card"></i>
+            <i className="fas fa-address-card"></i>
             <span>About</span>
             </a>
             <a href="/dashboard/contact">
-            <i class="far fa-envelope"></i>
+            <i className="far fa-envelope"></i>
             <span>Contact</span>
             </a>
                 </div>
                 <div className="dash-work">
-                    <div style={{margin : "10px"}}><AddBugs/></div>
-                
-                    <div className="Bugs">
-                    <GetBugs/>
-                    </div>
+                    <h1>If you need any information, please contact us :</h1>
+                    <p>Email : haythem.smirani@gmail.com</p>
+                    <p>Email : wael.chaieb@gmail.com</p>
+                    <p>Email : nidhal.katar@gmail.com</p>
                 </div>
+
             </div>
             <div className="dash-footer">
                 <p>© 2021</p>

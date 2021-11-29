@@ -52,11 +52,11 @@ dispatch(logoutHandler())
             <i className="fas fa-user"></i>
             <span>Profile</span>
             </a>
-            <a href="#">
+            <a href="/dashboard/about">
             <i className="fas fa-address-card"></i>
             <span>About</span>
             </a>
-            <a href="#">
+            <a href="/dashboard/contact">
             <i className="far fa-envelope"></i>
             <span>Contact</span>
             </a>
