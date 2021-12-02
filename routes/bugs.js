@@ -62,7 +62,7 @@ router.post(
 // @route   PUT http://localhost:5000/api/bugs/update/:id
 // @desc    Update bug
 // @access  Private
-router.put('/update/:id',  async (req, res) => {
+router.put('/update/:id', async (req, res) => {
   const { name, description, priority, status, location } = req.body;
 
   // Build bug object

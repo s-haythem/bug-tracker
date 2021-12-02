@@ -3,7 +3,7 @@ const User = require("../Models/Users");
 
 const isAuth = async (req, res, next) => {
   try {
-    const token = req.header("auth-token");
+    const token = req.headers["auth-token"];
     //check the existance of the token
     if (!token)
       return res.status(401).json({ msg: "user not authentificated" });
